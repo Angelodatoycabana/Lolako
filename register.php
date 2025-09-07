@@ -6,8 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $username = $email; // Use email as username for login
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->bind_param("ss", $username, $password);
+    $role = 'user'; // Default role is user
+    $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $password, $role);
     if ($stmt->execute()) {
         header("Location: login.php");
         exit();
@@ -108,23 +109,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="signup-title">Sign Up</div>
         <?php if(isset($error)) echo '<p style="color:red;">'.$error.'</p>'; ?>
         <form class="signup-form" method="post">
-            <div class="row">
-                <div style="flex:1;">
-                    <label>First Name</label>
-                    <input type="text" name="firstname" required>
-                </div>
-                <div style="flex:1;">
-                    <label>Last Name</label>
-                    <input type="text" name="lastname" required>
-                </div>
-            </div>
+            <label>First Name</label>
+            <input type="text" name="firstname" required>
+            <label>Last Name</label>
+            <input type="text" name="lastname" required>
             <label>Email</label>
             <input type="email" name="email" required>
             <label>Password</label>
             <input type="password" name="password" required>
-            <label>Re-enter Password</label>
-            <input type="password" name="repassword" required>
-            <button type="submit">Sign up</button>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 </div>
