@@ -9,7 +9,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users Management (Admin)</title>
+    <title>Generate Seniors ID (Admin)</title>
     <style>
         body { margin:0; padding:0; padding-top:60px; font-family: Arial, sans-serif; }
         .main-content { margin-left:0; padding:80px 40px 40px 40px; transition: margin-left 0.3s ease; }
@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 <body>
     <?php include 'admin_sidebar.php'; ?>
     <div class="main-content" id="mainContent">
-        <h2>Users Management (Admin)</h2>
+        <h2>Generate Seniors ID (Admin)</h2>
     </div>
     <script>
         function toggleSidebar(){
